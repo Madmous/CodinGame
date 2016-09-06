@@ -7,11 +7,12 @@ var LON = readline();
 var LAT = readline();
 var N = parseInt(readline());
 
-var res = {};
 var userCoordinate = {
     lon: parseFloat(LON.replace(",", ".")),
     lat: parseFloat(LAT.replace(",", "."))
 };
+
+var res = {};
 
 for (var i = 0; i < N; i++) {
     var DEFIB = readline();
@@ -21,7 +22,9 @@ for (var i = 0; i < N; i++) {
         lon: parseFloat(defibAfterSplit[4].replace(",", ".")),
         lat: parseFloat(defibAfterSplit[5].replace(",", "."))
     };
+
     var distance = calculateDistance(defibCoordinate, userCoordinate);
+
     if (res.distance === undefined) {
         res.distance = distance;
         res.name = defibAfterSplit[1];
@@ -36,5 +39,5 @@ function calculateDistance(defibCoordinate, userCoordinate) {
     var x = (defibCoordinate.lon - userCoordinate.lon) * 
                 Math.cos(defibCoordinate.lat + userCoordinate.lat) / 2;
     var y = defibCoordinate.lat - userCoordinate.lat;
-    return Math.sqrt(Math.abs(x+y)) * 6371;
+    return Math.sqrt(Math.abs(x * x + y * y)) * 6371;
 }
