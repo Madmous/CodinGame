@@ -11,12 +11,12 @@ var res;
 for (var i = 0; i < N; i++) {
     pi.push(parseInt(readline())); 
 }
+
 pi = pi.sort(function(a,b) {
     return a - b;    
 });
-piLength = pi.length;
 
-for (var i = 0 ; i < piLength; i++) {
+for (var i = 0 ; i < pi.length; i++) {
     var powerDifference = pi[i + 1] - pi[i];
     if (res === undefined) {
         res = powerDifference;
