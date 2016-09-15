@@ -4,11 +4,25 @@
  **/
 
 var N = parseInt(readline());
+var pi = [];
+
+var res;
+
 for (var i = 0; i < N; i++) {
-    var pi = parseInt(readline());
+    pi.push(parseInt(readline())); 
+}
+pi = pi.sort(function(a,b) {
+    return a - b;    
+});
+piLength = pi.length;
+
+for (var i = 0 ; i < piLength; i++) {
+    var powerDifference = pi[i + 1] - pi[i];
+    if (res === undefined) {
+        res = powerDifference;
+    } else if (powerDifference < res) {
+        res = powerDifference;
+    }    
 }
 
-// Write an action using print()
-// To debug: printErr('Debug messages...');
-
-print('answer');
+print(res);
