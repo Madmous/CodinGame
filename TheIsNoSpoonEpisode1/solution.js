@@ -27,7 +27,7 @@ for (var i = 0 ; i < height; i++) {
         if (nodePositions[i][j] === '0') {
         
             var nodeCoordinate = j + '' + i;
-            var nodePositionX = isNodePresentOnX(nodePositions[i]);
+            var nodePositionX = isNodePresentOnX(nodePositions[i], j);
             var nodePositionY = isNodePresentOnY(nodePositions, i);
             
             if (neighboursByNodePosition[nodeCoordinate] === undefined) {
@@ -57,8 +57,8 @@ for (var key in neighboursByNodePosition) {
     print(neighboursByNodePosition[key].join(' '));
 }
 
-function isNodePresentOnX(element) {
-    for (var i = j + 1; i < element.length; i++) {
+function isNodePresentOnX(element, nodeYPosition) {
+    for (var i = nodeYPosition + 1; i < element.length; i++) {
                 
         if (element[i] === '0') {
             return i;
@@ -67,8 +67,8 @@ function isNodePresentOnX(element) {
     return -1;
 }
 
-function isNodePresentOnY(element, k) {
-    for (var i = k + 1; i < element.length; i++) {
+function isNodePresentOnY(element, nodeXPosition) {
+    for (var i = nodeXPosition + 1; i < element.length; i++) {
         if (element[i][j] === '0') {
             return i;
         }
