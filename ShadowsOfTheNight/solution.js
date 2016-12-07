@@ -13,12 +13,19 @@ var Y0 = parseInt(inputs[1]);
 
 // game loop
 while (true) {
-    var bombDir = readline(); // the direction of the bombs from batman's current location (U, UR, R, DR, D, DL, L or UL)
+    var bombDir = readline();
+    
+    if (bombDir === 'DR') {
+        X0 += 1;
+        Y0 += 1;
+    } else if (bombDir === 'D') {
+        Y0 += 1;
+    } else if (bombDir === 'UR') {
+        X0 += 1;
+        Y0 -= 1;
+    } else if (bombDir === 'U') {
+        Y0 -= 1;
+    }
 
-    // Write an action using print()
-    // To debug: printErr('Debug messages...');
-
-
-    // the location of the next window Batman should jump to.
-    print('0 0');
+    print(String(X0) + ' ' + String(Y0));
 }
