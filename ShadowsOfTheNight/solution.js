@@ -12,25 +12,45 @@ var X0 = parseInt(inputs[0]);
 var Y0 = parseInt(inputs[1]);
 
 printErr('inputs: ' + inputs);    
-printErr('height: ' + H);
+printErr('height: ' + H);  
+printErr('width: ' + W);
 printErr('turns: ' + N);
 
 // game loop
 while (true) {
-    var bombDir = readline();
+    const bombDir = readline();
+    const batmanTourWidthDist = W - X0;
+    const batmanTourHeightDist = H - Y0;
+    
+    printErr('bombDir ' + bombDir);
+    printErr('batmanTourWidthDist ' + batmanTourWidthDist);
+    printErr('batmanTourHeightDist ' + batmanTourHeightDist);
+    
+    let batmanPosition; 
     
     if (bombDir === 'DR') {
-        X0 += 1;
-        Y0 += 1;
+        X0 += Math.floor(batmanTourWidthDist / 2);
+        Y0 += Math.floor(batmanTourHeightDist / 2);
     } else if (bombDir === 'D') {
-        let batmanTourHeightDist = H - Y0;
         Y0 += Math.floor(batmanTourHeightDist / 2);
     } else if (bombDir === 'UR') {
-        X0 += 1;
-        Y0 -= 1;
+        X0 += Math.floor(batmanTourWidthDist / 2);
+        Y0 -= Math.floor(batmanTourHeightDist / 2);
+    }  else if (bombDir === 'UL') {
+        X0 -= Math.floor(batmanTourWidthDist / 2);
+        Y0 -= Math.floor(batmanTourHeightDist / 2);
     } else if (bombDir === 'U') {
         Y0 -= 1;
     }
 
     print(String(X0) + ' ' + String(Y0));
 }
+
+function calculateDiagonaleDist(height, width) {
+    let res = 0;
+    
+    res = Math.sqrt(Math.pow(height, 2) * Math.pow(width, 2));
+    
+    return res;
+}
+
